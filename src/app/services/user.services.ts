@@ -14,7 +14,12 @@ export class UserService {
         this.url = GLOBAL.url;
     }
 
-    signup(){
-        return "hola desde el servicio!!";
+    signup(user_to_login){
+        let json = JSON.stringify(user_to_login);
+        let params = 'json='+json;
+        let headers = new Headers(['Content-Type','application/x-www-form-urlencoded']);
+
+        return this._http.post(this.url+'/login', params, {headers: headers})
+                .map(res => res.json());
     }
 }

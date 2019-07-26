@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
         //private _route: ActivatedRoute,
        // private _router :Router
     ){
-        this.title = 'Componente de login';
+        this.title = 'Identificate';
     }
 
     ngOnInit(){

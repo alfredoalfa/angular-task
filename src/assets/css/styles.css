@@ -1,3 +1,12 @@
-body{
-    background: #b4b9c0;
+/* body{
+    background: #6890c9;
+} */
+
+#logo{
+    height: 35px;
+    margin-top: -10px;
+}
+
+#header{
+    margin-top: 15px;
 }

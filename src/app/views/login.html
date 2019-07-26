@@ -4,14 +4,18 @@
     <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-7" class="no-padding">
             <p>
                 <label> Email: </label>
-                <input type="email" class="form-control" name="email">
+                <input type="email" class="form-control" name="emaill" #email="ngModel" [(ngModel)]="user.email" required/>
+                <span *ngIf="!email.valid && email.touched"> El email no es valido</span>
+                {{user | json}}
             </p>
             <p>
                 <label>Contraseña: </label>
-                <input type="password" class="form-control" name="password">
+                <input type="password" class="form-control" name="passwordd" #password="ngModel" [(ngModel)]="user.password" required/>
+                <span *ngIf="!password.valid && password.touched"> El email no es valido</span>
             </p>
         
-            <input type="submit" value="Entrar" class="btn btn-primary">
+            <input type="submit" value="Entrar" class="btn btn-primary" [disabled]="!loginForm.form.valid">
+            {{loginForm.form.valid}}
            
     </form>
 </div>

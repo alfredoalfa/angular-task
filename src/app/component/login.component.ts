@@ -12,11 +12,11 @@ export class LoginComponent implements OnInit {
     public user;
     public identity;
     public token;
-
+//Usar el constructor para la inyección de dependencias e inicialización simple de variables.
     constructor(
         private _route: ActivatedRoute,
         private _router: Router,
-        private _UserService: UserService
+        private _userService: UserService
     ){
         this.title = 'Identificate';
         this.user  = {
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
         };
         console.log("ya se armo el constructor ");
     }
-   
+   //Usar el método ngOnInit para inicialización compleja y obtener valores de las propiedades tipo Input.
     ngOnInit(){
         console.log("el componente login ha sido cargado correctamente.");
         this.logout();
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     }
 
     redirectIfIdentity(){ //hace un redirect si la persona esta logeada y no puede acceder a la ruta login
-        let identity = this._UserService.getIdentity();
+        let identity = this._userService.getIdentity();
         if ( identity != null && identity.id) {
             this._router.navigate(['/']);
                         
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
     onSubmit(){ //realiza el login 
         console.log(this.user);
 
-        this._UserService.signup(this.user).subscribe(
+        this._userService.signup(this.user).subscribe(
             response => { 
                 this.identity = response;
 
@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
                         
                         // GET TOKEN
                         this.user.getHash = null;
-                        this._UserService.signup(this.user).subscribe(
+                        this._userService.signup(this.user).subscribe(
                             response => { 
                                 this.token = response;
                 

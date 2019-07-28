@@ -14,7 +14,7 @@ export class UserService {
         this.url = GLOBAL.url;
     }
 
-    signup(user_to_login){
+    signup(user_to_login){ //metodo para enviar la peticion al servicio con el objeto JavaScript convertido en una cadena de texto JSON
         
         let json = JSON.stringify(user_to_login);
         let params = 'json=' + json;
@@ -46,5 +46,15 @@ export class UserService {
         }
 
         return this.token;
+    }
+
+    register(user_to_register){
+        let json = JSON.stringify(user_to_register);
+        let params = 'json=' +json;
+        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+
+        return this._http.post(this.url+'/user/new', params, {headers: headers})
+                            .map(res => res.json()); /// .map(res 'res es el parametro que recibe la row funtion' => res.json() 'res.json se recoge el res para convertirlo en formato json'
+        
     }
 }

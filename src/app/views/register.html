@@ -1,1 +1,42 @@
-<h1>{{title}}</h1>
+<div class="col-md-12">
+        <h3>{{title}}</h3>
+        <div class="alert alert-success" *ngIf="status == 'success' ">
+                Te has resgistrado de forma correcta, 
+                <a [routerLink]="['/login']">logeate aqui</a> 
+        </div>
+        <div class="alert alert-danger" *ngIf="status == 'error' ">
+                No te has registrado correctamente.
+        </div>
+        {{status}}
+        <form #registerForm="ngForm" (ngSubmit)="onSubmit(); registerForm.reset(); " class="col-md-7" class="no-padding">
+                <p>
+                    <label> Nombre: </label>
+                    <input type="text" class="form-control" name="nombre" #nombre="ngModel" [(ngModel)]="user.name" required/>
+                    <span *ngIf="!nombre.valid && nombre.touched"> El nombre no es valido</span>
+                    {{user | json}}
+                </p>
+
+                <p>
+                    <label> Apellido: </label>
+                    <input type="text" class="form-control" name="surname" #surname="ngModel" [(ngModel)]="user.surname" required/>
+                    <span *ngIf="!surname.valid && surname.touched"> El surname no es valido</span>
+                </p>
+
+                <p>
+                    <label> email: </label>
+                    <input type="email" class="form-control" name="email"  #email="ngModel" [(ngModel)]="user.email" required/>
+                    <span *ngIf="!email.valid && email.touched"> El email no es valido</span>
+                </p>
+
+                <p>
+                    <label> Password: </label>
+                    <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="user.password" required/>
+                    <span *ngIf="!email.valid && email.touched"> El password no es valido</span>
+                </p>
+
+                <input type="submit" value="Entrar" class="btn btn-success" [disabled]="!registerForm.form.valid">
+                {{registerForm.form.valid}}
+               
+        </form>
+        <!-- {"nombre":"","surname":"","email":"","password":"","rol":""} -->
+</div>

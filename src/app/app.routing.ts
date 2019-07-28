@@ -2,11 +2,13 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './component/login.component';
-import { RegisterComponent } from './component/register.component'
+import { RegisterComponent } from './component/register.component';
+import { DefaultComponent } from './component/default.component';
 
 const appRoutes: Routes = [
-    { path: '', component: LoginComponent },
+    { path: '', component: DefaultComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'login/:id', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: '**', component: LoginComponent }
 ];

@@ -26,11 +26,21 @@
                       </a>
                   </li>
                   <li>
-                      <a [routerLink]="['/']">
+                      <a [routerLink]="['/']" *ngIf="identity && identity.id">
                         <span class="glyphicon glyphicon-plus" arial-hidden="true"></span>
                         Crear tarea
                       </a>
                   </li>
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right" *ngIf="!identity">
+
+                <li><a [routerLink]="['/login']">Acceder</a></li>
+                <li><a [routerLink]="['/register']">Registro</a></li>
+
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right" *ngIf="identity && identity.id">
                   <li>
                       <a [routerLink]="['/']">
                         <span class="glyphicon glyphicon-cog" arial-hidden="true"></span>
@@ -38,17 +48,13 @@
                       </a>
                   </li>
                   <li>
-                      <a [routerLink]="['/']">
+                      <a [routerLink]="['/login', 1]">
                         <span class="glyphicon glyphicon-log-out" arial-hidden="true"></span>
                         Salir
                       </a>
                   </li>
               </ul>
 
-              <ul class="nav navbar-nav navbar-right">
-                <li><a [routerLink]="['/login']">Acceder</a></li>
-                <li><a [routerLink]="['/register']">Registro</a></li>
-              </ul>
             </div>
         </div>
 </header>

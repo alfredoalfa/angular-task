@@ -5,6 +5,7 @@ import { LoginComponent } from './component/login.component';
 import { RegisterComponent } from './component/register.component';
 import { DefaultComponent } from './component/default.component';
 import { UserEditComponent } from './component/user.edit.component';
+import { TaskNewComponent } from './component/task.new.component';
 
 const appRoutes: Routes = [
     { path: '', component: DefaultComponent },
@@ -12,6 +13,7 @@ const appRoutes: Routes = [
     { path: 'login/:id', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'user-edit', component: UserEditComponent },
+    { path: 'new-task', component: TaskNewComponent },
     { path: '**', component: LoginComponent }
 ];
 

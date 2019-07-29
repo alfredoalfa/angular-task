@@ -10,6 +10,7 @@ import { LoginComponent } from './component/login.component';
 import { RegisterComponent } from './component/register.component';
 import { DefaultComponent } from './component/default.component';
 import { UserEditComponent } from './component/user.edit.component';
+import { TaskNewComponent } from './component/task.new.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { UserEditComponent } from './component/user.edit.component';
     LoginComponent,
     RegisterComponent,
     DefaultComponent,
-    UserEditComponent
+    UserEditComponent,
+    TaskNewComponent
   ],
   imports: [
     BrowserModule,

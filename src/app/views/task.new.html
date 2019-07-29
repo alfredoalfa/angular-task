@@ -1,0 +1,36 @@
+<div class="col-md-12">
+    <h3>
+        {{page_title}}
+    </h3>
+
+    <form #taskNewForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-7" class="no-padding">
+        <p>
+            <label> Titulo: </label>
+            <input type="text" class="form-control" name="title" #title="ngModel" [(ngModel)]="task.title" required/>
+            <span *ngIf="!title.valid && title.touched"> El titulo no es valido</span>
+            {{task | json}}
+        </p>
+        <p>
+            <label> Descripcion: </label>
+            <textarea class="form-control" name="description" #description="ngModel" [(ngModel)]="task.description"></textarea>
+            <span *ngIf="!description.valid && description.touched"> La descripcion no es valido</span>
+            {{task | json}}
+        </p>
+
+        <p>
+            <label> Estado: </label>
+            <select class="form-control" name="status" #status="ngModel" [(ngModel)]="task.status">
+                    <option value="new">nuevo</option>
+                    <option value="todo">por hacer</option>
+                    <option value="finished">acabado</option>
+            </select>
+            <span *ngIf="!status.valid && status.touched"> El status no es valido</span>
+            {{task | json}}
+        </p>
+    
+        <input type="submit" value="{{page_title}}" class="btn btn-success" [disabled]="!taskNewForm.form.valid">
+        {{taskNewForm.form.valid}}
+       
+</form>
+
+</div>

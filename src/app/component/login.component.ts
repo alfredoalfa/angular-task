@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     ){
         this.title = 'Identificate';
         this.user  = {
-            "email":"wilderr@gmail.com",
+            "email":"luis@gmail.com",
             "password":"123456",
             "getHash": "false"
         };

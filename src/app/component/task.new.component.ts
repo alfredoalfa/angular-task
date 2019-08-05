@@ -12,7 +12,9 @@ import { Task } from '../models/task';
 export class TaskNewComponent implements OnInit {
     public page_title: string;
     public identity;
+    public token;
     public task: Task
+    public status_task;
 
     
     constructor(
@@ -24,6 +26,7 @@ export class TaskNewComponent implements OnInit {
         
         this.page_title = 'Nueva tarea';
         this.identity = this._userService.getIdentity();
+        this.token = this._userService.getToken();
     }
 
     ngOnInit(){
@@ -34,11 +37,29 @@ export class TaskNewComponent implements OnInit {
             this.task = new Task(1, "", "", "new", "null", "null");           
         }
 
-        console.log(this._taskService.create());
+        //console.log(this._taskService.create());
     }
 
     onSubmit(){
         console.log(this.task);
+
+        this._taskService.create(this.token,this.task).subscribe(
+            response => {
+                this.status_task = response.status;
+console.log(this.status_task);
+                    if (this.status_task != 'Success') {
+                            this.status_task = 'error';
+                    } else {
+                        this.status_task = response.status;
+                        //this._router.navigate(['/task', this.task.id]);
+                        this._router.navigate(['/']);
+                    }
+
+            },
+            error => {
+                console.log(<any> error);
+            }
+        );
     }
 
 }

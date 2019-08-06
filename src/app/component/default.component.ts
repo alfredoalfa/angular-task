@@ -1,21 +1,81 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { UserService } from '../services/user.services';
+import { TaskService } from '../services/task.services';
+import { Task } from '../models/task';
 
 @Component({
     selector: 'default',
-    templateUrl: '../views/default.html'
+    templateUrl: '../views/default.html',
+    providers: [UserService, TaskService]
 })
 export class DefaultComponent implements OnInit {
     public title: string;
+    public identity;
+    public token;
+    public tasks: Array<Task>;
+    public pages;
+    public pagePrev;
+    public pageNext;
 
     constructor(
         private _route: ActivatedRoute,
-        private _router :Router
+        private _router :Router,
+        private _userService: UserService,
+        private _taskService: TaskService
     ){
-        this.title = 'Homepagos';
+        this.title      = 'Homepagos';
+        this.identity   = this._userService.getIdentity();
+        this.token      = this._userService.getToken();
     }
 
     ngOnInit(){
-        console.log("el componente default ha sido cargado correctamente.")
+        console.log("el componente default ha sido cargado correctamente.");
+        this.getAllTasks();
+    }
+
+    getAllTasks(){
+        this._route.params.forEach((params: Params) => {
+            let page = +params['page'];
+
+            if(!page){
+                page = 1;
+            }
+            console.log(this.token);
+            this._taskService.getTasks(this.token, page).subscribe(
+                response => {
+                    console.log(response);
+                    if (response.status == 'Success') {
+                        this.tasks = response.data;
+                        
+                        //total de paginas
+                        this.pages = [];
+                        for (let i = 1; i < response.length; i++) {
+                            this.pages.push(i);
+                        }
+                        
+                        //pagina anterior
+                        if (page >= 2) {
+                            this.pagePrev = (page - 1);                    
+                        }else{
+                            this.pagePrev = page;
+                        }
+
+                        //Pagina siguiente
+                        if (page < response.total_pages || page == 1) {
+                            this.pageNext = (page + 1);                    
+                        }else{
+                            this.pageNext = page;
+                        }
+                        //console.log(JSON.stringify(this.tasks));
+                    }
+
+                
+                },
+                error => {
+                    console.log(<any>error);
+                }
+            );
+        });
     }
 }

@@ -9,6 +9,8 @@ import { TaskNewComponent } from './component/task.new.component';
 
 const appRoutes: Routes = [
     { path: '', component: DefaultComponent },
+    { path: 'index', component: DefaultComponent },
+    { path: 'index/:page', component: DefaultComponent },
     { path: 'login', component: LoginComponent },
     { path: 'login/:id', component: LoginComponent },
     { path: 'register', component: RegisterComponent },

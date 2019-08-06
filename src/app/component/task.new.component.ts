@@ -25,8 +25,8 @@ export class TaskNewComponent implements OnInit {
     ){
         
         this.page_title = 'Nueva tarea';
-        this.identity = this._userService.getIdentity();
-        this.token = this._userService.getToken();
+        this.identity   = this._userService.getIdentity();
+        this.token      = this._userService.getToken();
     }
 
     ngOnInit(){

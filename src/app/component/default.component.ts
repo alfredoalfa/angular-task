@@ -17,6 +17,7 @@ export class DefaultComponent implements OnInit {
     public pages;
     public pagePrev;
     public pageNext;
+    public loading;
 
     constructor(
         private _route: ActivatedRoute,
@@ -41,26 +42,29 @@ export class DefaultComponent implements OnInit {
             if(!page){
                 page = 1;
             }
-            console.log(this.token);
+            //peticion tipo ajax
+            this.loading = "show";
             this._taskService.getTasks(this.token, page).subscribe(
                 response => {
                     console.log(response);
                     if (response.status == 'Success') {
                         this.tasks = response.data;
+
+                        this.loading = "hide";
                         
                         //total de paginas
                         this.pages = [];
-                        for (let i = 1; i < response.length; i++) {
+                        for (let i = 1; i < response.data.length; i++) {
                             this.pages.push(i);
                         }
-                        
+                        console.log( this.pages);
+                        console.log(JSON.stringify(response.data.length));
                         //pagina anterior
                         if (page >= 2) {
                             this.pagePrev = (page - 1);                    
                         }else{
                             this.pagePrev = page;
                         }
-
                         //Pagina siguiente
                         if (page < response.total_pages || page == 1) {
                             this.pageNext = (page + 1);                    

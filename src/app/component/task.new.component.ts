@@ -41,12 +41,10 @@ export class TaskNewComponent implements OnInit {
     }
 
     onSubmit(){
-        console.log(this.task);
-
         this._taskService.create(this.token,this.task).subscribe(
             response => {
                 this.status_task = response.status;
-console.log(this.status_task);
+// console.log(this.status_task);
                     if (this.status_task != 'Success') {
                             this.status_task = 'error';
                     } else {

@@ -31,7 +31,6 @@ export class DefaultComponent implements OnInit {
     }
 
     ngOnInit(){
-        console.log("el componente default ha sido cargado correctamente.");
         this.getAllTasks();
     }
 
@@ -46,7 +45,6 @@ export class DefaultComponent implements OnInit {
             this.loading = "show";
             this._taskService.getTasks(this.token, page).subscribe(
                 response => {
-                    console.log(response);
                     if (response.status == 'Success') {
                         this.tasks = response.data;
 
@@ -57,8 +55,6 @@ export class DefaultComponent implements OnInit {
                         for (let i = 1; i < response.data.length; i++) {
                             this.pages.push(i);
                         }
-                        console.log( this.pages);
-                        console.log(JSON.stringify(response.data.length));
                         //pagina anterior
                         if (page >= 2) {
                             this.pagePrev = (page - 1);                    

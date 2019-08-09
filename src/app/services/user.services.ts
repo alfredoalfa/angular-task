@@ -28,10 +28,13 @@ export class UserService {
         let identity = JSON.parse(localStorage.getItem('identity'));
 
         if (this.identity != 'undefined') {
-            this.identity = identity;           
+            this.identity = identity;
+      
         } else {
             this.identity = null;
+
         }
+
 
         return this.identity;
     }

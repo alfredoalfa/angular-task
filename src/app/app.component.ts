@@ -21,10 +21,10 @@ export class AppComponent implements OnInit {
 
 
       ngOnInit(){
-            console.log("2el componente login ha sido cargado correctamente.");
-            console.log(this._UserService.getIdentity());
-            console.log("2el componente login ha sido cargado correctamente.");
-            console.log(this._UserService.getToken());
+            // console.log("2el componente login ha sido cargado correctamente.");
+            // console.log(this._UserService.getIdentity());
+            // console.log("2el componente login ha sido cargado correctamente.");
+            // console.log(this._UserService.getToken());
       }
 }
 

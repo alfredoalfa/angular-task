@@ -1,6 +1,6 @@
 <div class="col-md-12">
 
-        {{page }}
+        <!-- {{tasks | json }} -->
     <div  *ngIf="!identity || identity == null">
         Inicia sesión para acceder a mas opciones....
     </div>
@@ -39,11 +39,11 @@
                     </td>
                     <td>
                         <h4>
-                            {{task.title}}
+                           <a [routerLink]="['/task',task.id]" >{{task.title}}</a> 
                         </h4>
                     </td>
                     <td>
-                    <a href="#" class="btn btn-warning">Editar</a>
+                    <a  [routerLink]="['task-edit', task.id]"  class="btn btn-warning">Editar</a>
                     </td>
                 </tr>
             </table>

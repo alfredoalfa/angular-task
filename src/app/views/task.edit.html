@@ -8,9 +8,10 @@
     <div class="alert alert-danger" *ngIf="status_task == 'error' ">
             No te has actualizado correctamente.
     </div>
-    {{task | json}}
-    <form #taskNewForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-7" class="no-padding">
-        <p>
+    {{task_edit.id | json}}
+    <form #taskEditForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-7" class="no-padding">
+        
+        <!-- <p>
             <label> Titulo: </label>
             <input type="text" class="form-control" name="title" #title="ngModel" [(ngModel)]="task.title" required/>
             <span *ngIf="!title.valid && title.touched"> El titulo no es valido</span>
@@ -32,10 +33,10 @@
             </select>
             <span *ngIf="!status.valid && status.touched"> El status no es valido</span>
             {{task | json}}
-        </p>
+        </p> -->
     
-        <input type="submit" value="{{page_title}}" class="btn btn-success" [disabled]="!taskNewForm.form.valid">
-        {{taskNewForm.form.valid}}
+        <input type="submit" value="{{page_title}}" class="btn btn-success" [disabled]="!taskEditForm.form.valid">
+        {{taskEditForm.form.valid}}
        
 </form>
 

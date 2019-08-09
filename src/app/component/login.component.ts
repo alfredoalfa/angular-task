@@ -22,19 +22,16 @@ export class LoginComponent implements OnInit {
         this.user  = {
             "email":"luis@gmail.com",
             "password":"123456",
-            "getHash": "false"
+            "getHash": "true"
         };
-        console.log("ya se armo el constructor ");
     }
    //Usar el método ngOnInit para inicialización compleja y obtener valores de las propiedades tipo Input.
     ngOnInit(){
-        console.log("el componente login ha sido cargado correctamente.");
         this.logout();
         this.redirectIfIdentity();
     }
 
     logout(){ //se recogen los parametros de la url activa y si esta encuentra el numero 1 entonces se cumple la condición.
-        console.log('cargar el escaneo de la ruta activa');
         this._route.params.forEach((params: Params) => {
             let logout = +params['id']; //se combierte a numero agregardo el +
             if ( logout == 1 ) {
@@ -58,8 +55,6 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit(){ //realiza el login 
-        console.log(this.user);
-
         this._userService.signup(this.user).subscribe(
             response => { 
                 this.identity = response;

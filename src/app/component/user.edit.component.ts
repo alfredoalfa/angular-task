@@ -38,16 +38,13 @@ export class UserEditComponent implements OnInit {
                 this.identity.email,
                 this.identity.password
             );
-            console.log(this.user);
         }
     }
 
     onSubmit(){
-        console.log(this.user);
         this._userService.updateUser(this.user).subscribe(
             response => {
                 this.status = response.status;
-                console.log(this.status);
                 if (this.status != 'success') {
                     this.status = 'error';
                 } else {

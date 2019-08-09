@@ -27,13 +27,31 @@ export class TaskService{
        
         let params = "autorization="+token;
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-        console.log(page);
+
             if (page == null) {
                 page = 1;                
             }
 
         return this._http.post(this.url+'/task/list?page='+page, params, {headers: headers})
                                 .map(res => res.json());  
+    }
+
+    getTask(token,id){
+        let params = "autorization="+token;
+        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+
+        return this._http.post(this.url+'/task/detail/'+id, params,{headers: headers})
+                                .map(res => res.json());
+    }
+
+    update(token, task, id){
+  
+        let json = JSON.stringify(task);
+        let params = "json="+json+'&autorization='+token;
+        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+
+        return this._http.post(this.url+'/task/edit/'+id, params, {headers: headers})
+                                  .map(res => res.json());
     }
 
 }
